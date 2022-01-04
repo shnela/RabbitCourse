@@ -32,9 +32,9 @@ Using `rabbitmqadmin` (`rabbitmqadmin help subcommands`)
 
 
 ### publish/consume with `rabbitmqadmin`
-[rabbitmqadmin docs](https://www.rabbitmq.com/rabbitmqctl.8.html)
+[rabbitmqadmin docs](https://www.rabbitmq.com/management-cli.html)
 
 1. `rabbitmqadmin help subcommands`
 1. `rabbitmqadmin publish exchange=weather topic="" payload=foo`
-1. `rabbitmqadmin get queue=broadcast=1`
+1. `rabbitmqadmin get queue=broadcast1`
 

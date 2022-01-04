@@ -35,7 +35,7 @@ docker exec -it rabbitmq /bin/bash
    1. `rabbitmqctl list_bindings`
 
 ### Manage node elements with `rabbitmqadmin`
-[rabbitmqadmin docs](https://www.rabbitmq.com/rabbitmqctl.8.html)
+[rabbitmqadmin docs](https://www.rabbitmq.com/management-cli.html)
 
 1. `rabbitmqctl` alternatives
    1. `rabbitmqadmin list queues`
