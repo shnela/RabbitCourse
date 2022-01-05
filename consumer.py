@@ -1,22 +1,22 @@
 import pika
+import sys
 from time import sleep
 
-connection = pika.BlockingConnection()
+# command line parameters
+MSG_PER_SECOND = 1 / int(sys.argv[1])
+QUEUE = sys.argv[2]
+
+# init connection
+connection_params = pika.ConnectionParameters(port=5001)
+connection = pika.BlockingConnection(parameters=connection_params)
 channel = connection.channel()
+channel.queue_declare(QUEUE)
 
-channel.queue_declare('test')
-
-for method_frame, properties, body in channel.consume('test'):
+for method_frame, properties, body in channel.consume(QUEUE):
     # Display the message parts and acknowledge the message
     print(method_frame, properties, body)
     channel.basic_ack(method_frame.delivery_tag)
-    sleep(1)
 
-    # Escape out of the loop after 10 messages
-    if method_frame.delivery_tag == 10:
-        break
+    sleep(MSG_PER_SECOND)
 
-# Cancel the consumer and return any pending messages
-requeued_messages = channel.cancel()
-print('Requeued %i messages' % requeued_messages)
 connection.close()

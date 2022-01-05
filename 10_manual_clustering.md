@@ -52,19 +52,19 @@ rabbitmqctl cluster_status
 
 ### How to remove node from cluster
 ```bash
-rabbitmqctl -n rabbit@rmq4 stop_app
-rabbitmqctl forget_cluster_node rabbit@rmq4
+rabbitmqctl -n rabbit@rmq3 stop_app
+rabbitmqctl forget_cluster_node rabbit@rmq3
 ```
 
 ## TODO
 * Remove all exisintg nodes with: `docker rm -f $(docker ps -aq)`
-* Create cluster of two nodes: `rmq{1,2,3}
+* Create cluster of three nodes: `rmq{1,2,3}
 * Create some exchanges and queues in cluster
-  * verify that exchanges and queues are available from all nodes
+    * verify that exchanges and queues are available from all nodes
 * Create new standalone node `rmq4` and create some exchanges and queues in it.
 * Try to add `rmq4` to cluster and check which exchanges / queues survived.
 * Kick out `rmq4` from cluster with `rabbitmqctl forget_cluster_node rabbit@rmq4`
-  * to forget node from cluster it must be shut down
-  * after removing cluster if you try to add it again it won't be able to join since it'll assume that is part of cluster
-  * try to re-join `rmq3` node to cluster
+    * to forget node from cluster it must be shut down
+    * after removing cluster if you try to add it again it won't be able to join since it'll assume that is part of cluster
+    * try to re-join `rmq3` node to cluster
   

@@ -1,17 +1,22 @@
-#  Running several docker containers at once
-[docker-compose docs](https://docs.docker.com/compose/)
+# Classic Queue Mirroring 
+[docs mirroring](https://www.rabbitmq.com/ha.html)
+[docs policies](https://www.rabbitmq.com/parameters.html#policies)
 
-[Config File Peer Discovery Overview](https://www.rabbitmq.com/cluster-formation.html#peer-discovery-classic-config)
+**Queue mirroring is deprecated method of keeping HA, since RMQ3.8 Quorum queues are available.**
 
-## Run all three nodes at once
-In the directory containing `docker-compose.yml`
+## Create policy for Q1 in admin UI
+Name: mirroringQ1
+Pattern: Q1
+ha-mode: all
 
+Now all **new** messages are forwarded to mirror queue as well.
+
+## Create policy using commandline
 ```bash
-docker-compose up --force-recreate --no-deps
+rabbitmqctl set_policy mirroringQ1 "Q1" '{"ha-mode": "exactly", "ha-params": 2}'
 ```
 
-## Producing and consuming using cluster
-Useful help command: `rabbitmqadmin help subcommands`
+## Master node promotion
 
 * start cluster with `docker-compose`
 * go to any node `docker exec -it rmq1 /bin/bash`
@@ -24,17 +29,10 @@ Useful help command: `rabbitmqadmin help subcommands`
     * `rabbitmqadmin publish routing_key=Q1 payload=message1`
     * `rabbitmqadmin publish routing_key=Q2 payload=message2`
     * `rabbitmqadmin list queues name messages node`
-* consume messages (still being on `rmq1`) from `Q1` and `Q2`
-    * `rabbitmqadmin get queue=Q1 ackmode=ack_requeue_false`
-    * `rabbitmqadmin get queue=Q2 ackmode=ack_requeue_false`
-
-
-## Problems with unavialiable nodes
-* With the same queues `Q1` and `Q2`
-* publish some message (still being on `rmq1`) to `Q2` using default exchange
-    * `rabbitmqadmin publish routing_key=Q2 payload=message2`
-    * `rabbitmqadmin list queues name messages node`
 * turn application on `rmq2` off: `rabbitmqctl -n rabbit@rmq2 stop_app`
+* check queues
+    * `rabbitmqadmin list queues name messages node`
+    * now `Q2` is moved to other node
 * consume messages (still being on `rmq1`) from `Q2`
     * `rabbitmqadmin get queue=Q2 ackmode=ack_requeue_false`
     * you can't consume from unavailable node
