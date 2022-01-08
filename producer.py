@@ -10,7 +10,10 @@ QUEUE = sys.argv[2]
 connection_params = pika.ConnectionParameters(port=5001)
 connection = pika.BlockingConnection(parameters=connection_params)
 channel = connection.channel()
-channel.queue_declare(QUEUE)
+channel.queue_declare(
+    queue=QUEUE,
+    durable=True
+    )
 
 i = 0
 while True:

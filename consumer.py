@@ -10,7 +10,11 @@ QUEUE = sys.argv[2]
 connection_params = pika.ConnectionParameters(port=5001)
 connection = pika.BlockingConnection(parameters=connection_params)
 channel = connection.channel()
-channel.queue_declare(QUEUE)
+channel.queue_declare(
+    queue=QUEUE,
+    durable=True
+    )
+channel.basic_qos(prefetch_count=1000)
 
 for method_frame, properties, body in channel.consume(QUEUE):
     # Display the message parts and acknowledge the message
