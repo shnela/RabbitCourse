@@ -11,6 +11,11 @@ cd ./cluster
 docker-compose up --force-recreate --no-deps
 ```
 
+> Your app’s network is given a name based on the “project name”, which is based on the name of the directory it lives in. You can override the project name with either the --project-name flag or the COMPOSE_PROJECT_NAME environment variable.
+
+So newly created network will be called `cluster_rabbits`.
+You can check it with `docker network ls` command.
+
 ## Producing and consuming using cluster
 Useful help command: `rabbitmqadmin help subcommands`
 

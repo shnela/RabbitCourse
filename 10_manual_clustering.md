@@ -20,9 +20,9 @@ docker network create rabbits
 * with given hostname: `rmq1`, `rmq2`, `rmq3`
 
 ```bash
-docker run -d --rm --net rabbits -p 8081:15672 -e RABBITMQ_ERLANG_COOKIE=ABCDEFGH --hostname rmq1 --name rmq1 rabbitmq:3.9-management
-docker run -d --rm --net rabbits -p 8082:15672 -e RABBITMQ_ERLANG_COOKIE=ABCDEFGH --hostname rmq2 --name rmq2 rabbitmq:3.9-management
-docker run -d --rm --net rabbits -p 8083:15672 -e RABBITMQ_ERLANG_COOKIE=ABCDEFGH --hostname rmq3 --name rmq3 rabbitmq:3.9-management
+docker run -d --rm --net rabbits -p 8081:15672 -e RABBITMQ_ERLANG_COOKIE=ABCDEFGH --hostname rmq1 --name rmq1 rabbitmq:3.10-management
+docker run -d --rm --net rabbits -p 8082:15672 -e RABBITMQ_ERLANG_COOKIE=ABCDEFGH --hostname rmq2 --name rmq2 rabbitmq:3.10-management
+docker run -d --rm --net rabbits -p 8083:15672 -e RABBITMQ_ERLANG_COOKIE=ABCDEFGH --hostname rmq3 --name rmq3 rabbitmq:3.10-management
 ```
 
 ### Analyze standalone node status
