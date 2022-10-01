@@ -7,6 +7,7 @@
 In the directory containing `docker-compose.yml`
 
 ```bash
+cd ./cluster
 docker-compose up --force-recreate --no-deps
 ```
 
