@@ -24,8 +24,8 @@ docker exec -it rabbitmq /bin/bash
 
 ## Tasks
 
-1. Create three queues: `img_archiver1`, `img_archiver2` and `img_resize`
-1. Create exchange `img`
+1. Create three queues: `q.img_archiver1`, `q.img_archiver2` and `q.img_resize`
+1. Create exchange `ex.img`
    1. Add routing_key:`img.archive` to both archiver queues
    1. Add routing_key:`img.resize` to resize queue
 1. Send some messages with `img.archive`, `img.resize` and some invalid routing_keys.
@@ -42,4 +42,4 @@ docker exec -it rabbitmq /bin/bash
    1. `rabbitmqadmin list exchanges`
    1. `rabbitmqadmin list bindings`
 1. `rabbitmqadmin help subcommands`
-1. Declare `new_images` exchange and `new_archive`, `new_resize` queues with `rabbitmqadmin`
+1. Declare `ex.new_images` exchange and `q.new_archive`, `q.new_resize` queues with `rabbitmqadmin`

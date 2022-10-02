@@ -19,6 +19,6 @@ Creadentials: guest/guest
 
 ## Tasks
 
-1. Create a queue
+1. Create a queue `q.01_running`
 2. Send some messages to it
 3. Read messages

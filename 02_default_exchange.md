@@ -24,7 +24,8 @@ docker exec -it rabbitmq /bin/bash
 
 ## Tasks
 
-1. Create two queues: `test1`, `test2`
+### In UI (RabbitMQ Management)
+1. Create two queues: `q.default1`, `q.default2`
 1. Send some message to any of them with `default exchange`
 1. Read messages
 
@@ -34,4 +35,3 @@ docker exec -it rabbitmq /bin/bash
 1. `rabbitmqctl list_queues`
 1. `rabbitmqctl list_exchanges`
 1. `rabbitmqctl list_bindings`
-

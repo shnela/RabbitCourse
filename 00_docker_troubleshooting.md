@@ -1,5 +1,15 @@
 # Docker troubleshooting
 
+## Display running docker containers
+```
+docker ps
+```
+
+### Display all
+```
+docker ps -a
+```
+
 ## Stop and remove docker containers
 
 ### Particular

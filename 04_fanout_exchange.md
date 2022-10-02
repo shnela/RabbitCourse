@@ -25,9 +25,9 @@ docker exec -it rabbitmq /bin/bash
 ## Tasks
 Using `rabbitmqadmin` (`rabbitmqadmin help subcommands`)
 
-1. Create three queues: `broadcast1`, `broadcast2` (`rabbitmqadmin declare queue`)
-1. Create fanout exchange `weather` and bind it  to both queues (`rabbitmqadmin declare exchange`, `rabbitmqadmin 
-1. Send some messages to `weather` exchagne.
+1. Create three queues: `q.broadcast1`, `q.broadcast2` (`rabbitmqadmin declare queue`)
+1. Create fanout exchange `ex.weather` and bind it  to both queues (`rabbitmqadmin declare exchange`, `rabbitmqadmin declare binding`)
+1. Send some messages to `ex.weather` exchagne.
 1. Check where they appear.
 
 
@@ -35,6 +35,5 @@ Using `rabbitmqadmin` (`rabbitmqadmin help subcommands`)
 [rabbitmqadmin docs](https://www.rabbitmq.com/management-cli.html)
 
 1. `rabbitmqadmin help subcommands`
-1. `rabbitmqadmin publish exchange=weather topic="" payload=foo`
-1. `rabbitmqadmin get queue=broadcast1`
-
+1. `rabbitmqadmin publish exchange=ex.weather routing_key="" payload=foo`
+1. `rabbitmqadmin get queue=q.broadcast1`
