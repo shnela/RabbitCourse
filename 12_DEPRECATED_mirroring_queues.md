@@ -1,4 +1,4 @@
-# Classic Queue Mirroring 
+# [DEPRECATED] Classic Queue Mirroring
 [docs mirroring](https://www.rabbitmq.com/ha.html)
 [docs policies](https://www.rabbitmq.com/parameters.html#policies)
 

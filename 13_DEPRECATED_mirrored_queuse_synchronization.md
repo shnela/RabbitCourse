@@ -1,4 +1,4 @@
-# Unsynchronised Mirrors
+# [DEPRECATED] Unsynchronised Mirrors
 [docs](https://www.rabbitmq.com/ha.html#unsynchronised-mirrors)
 
 ## Check synchronization
