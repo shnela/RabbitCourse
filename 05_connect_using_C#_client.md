@@ -28,6 +28,3 @@
    4. In case of problems:
       1. you can compare file with `Consumer05.cs`
       2. or just run `Consumer05.cs` by changing `<StartupObject>` property in `consumer.csproj`
-
-## More about RabbitMQ.Client
-[ .NET/C# Client API Guide ](https://rabbitmq.com/dotnet-api-guide.html)
