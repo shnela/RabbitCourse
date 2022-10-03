@@ -3,7 +3,7 @@ using RabbitMQ.Client.Events;
 using System.Text;
 
 
-class Consumer06
+class Consumer07
 {
     private const string QueueName = "q.test1.from_code";
 

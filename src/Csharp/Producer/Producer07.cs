@@ -2,7 +2,7 @@
 using System.Text;
 
 
-class Producer06
+class Producer07
 {
     private const string QueueName = "q.test1.from_code";
 
