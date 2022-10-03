@@ -1,26 +1,14 @@
-# Using direct exchange and rabbitmqctl
+# Using direct exchange and rabbitmqadmin
 
-[Docker image information.](https://hub.docker.com/_/rabbitmq/)
+## What we'll do
+* using `Management UI` we'll
+  * declare `direct exchange`
+  * declare `queues` and bind them to created `direct exchange`
+  * then we'll send some messages through newly created `direct exchange`
+* analyze queue statistics using `rabbitmqctl` 
+* then repeat most of above steps using `rabbitmqadmin`
+  * sending and receiving messages will still be done in `Management UI`
 
-## Downloading and Installing RabbitMQ
-[docs](https://www.rabbitmq.com/download.html)
-
-Run:
-```
-docker run -it --rm --name rabbitmq -p 5672:5672 -p 15672:15672 rabbitmq:3.10-management
-```
-
-## Management Plugin
-[docs](https://www.rabbitmq.com/management.html)
-
-Go to http://127.0.0.1:15672
-
-Creadentials: guest/guest
-
-## Exec commands in RMQ node
-```
-docker exec -it rabbitmq /bin/bash
-```
 
 ## Tasks
 
