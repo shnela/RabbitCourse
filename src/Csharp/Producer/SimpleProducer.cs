@@ -2,16 +2,22 @@
 using System.Text;
 
 
-class Producer07
+class SimpleProducer
 {
-    private const string QueueName = "q.test1.from_code";
+    private const string QueueName = "q.code.simple";
 
-    public static void Main()
+    public static void Main(string[] args)
+    {
+        int msgs_per_second = Int32.Parse(args[0]);
+        produce(msgs_per_second);
+    }
+
+    public static void produce(int msgs_per_second)
     {
         var factory = new ConnectionFactory() {
             HostName = "localhost",
             Port = 5672,
-            ClientProvidedName = "consumer_connection"
+            ClientProvidedName = "producer_connection"
             };
         using (var connection = factory.CreateConnection())
         using (var channel = connection.CreateModel())
@@ -21,15 +27,15 @@ class Producer07
                                  exclusive: false,
                                  autoDelete: false);
 
-            string message = "Hello World! " + DateTime.Now;
-
             while (true) {
-                var body = Encoding.UTF8.GetBytes(message + DateTime.Now);
+                string message = "Hello World! " + DateTime.Now.TimeOfDay;
+                var body = Encoding.UTF8.GetBytes(message);
                 channel.BasicPublish(exchange: "",
                                     routingKey: QueueName,
                                     basicProperties: null,
                                     body: body);
-                Thread.Sleep(333);
+                Console.WriteLine(" * Sent {0}", message);
+                Thread.Sleep(1000 / msgs_per_second);
             }
         }
     }
