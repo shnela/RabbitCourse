@@ -2,7 +2,7 @@
 
 ## What we'll do
 * using `Management UI` we'll
-  * declare `durable` and `transistent` queues
+  * declare `durable` and `transient` queues
   * send messages to those queues
   * check what happened after node restart
 
@@ -24,7 +24,7 @@ rabbitmqctl start_app
 
 1. Declare new queues:
    1. `q.test_durability.durable1` - durable
-   2. `q.test_durability.transistent` - transistent
+   2. `q.test_durability.transient` - transient
 2. For every queue send two messages:
    1. One in `Persistent` mode
    2. One in `Non-persistent` mode
@@ -32,7 +32,7 @@ rabbitmqctl start_app
    1. Should be equall to 2
 4. Restart RabbitMQ application
 5. Check number of messages in each queue
-   1. There should be no `q.test_durability.transistent` queue
+   1. There should be no `q.test_durability.transient` queue
    2. There should be only **1** message in `q.test_durability.durable1`
 
 
