@@ -29,9 +29,6 @@ class SimpleConsumer
                                  autoDelete: false);
 
             var consumer = new EventingBasicConsumer(channel);
-            channel.BasicConsume(queue: QueueName,
-                                 autoAck: true,
-                                 consumer: consumer);
             consumer.Received += (model, ea) =>
             {
                 var body = ea.Body.ToArray();
@@ -39,6 +36,9 @@ class SimpleConsumer
                 Console.WriteLine("[{0}] * Received {1}", DateTime.Now.TimeOfDay, message);
                 Thread.Sleep(1000 / msgs_per_second);
             };
+            channel.BasicConsume(queue: QueueName,
+                                 autoAck: true,
+                                 consumer: consumer);
 
             Console.WriteLine(" Press [enter] to exit.");
             Console.ReadLine();
@@ -59,17 +59,17 @@ class SimpleConsumer
             channel.QueueDeclarePassive(queue: QueueName);
 
             var consumer = new EventingBasicConsumer(channel);
-            channel.BasicConsume(queue: QueueName,
-                                 autoAck: false,
-                                 consumer: consumer);
             consumer.Received += (model, ea) =>
             {
                 var body = ea.Body.ToArray();
                 var message = Encoding.UTF8.GetString(body);
-                Console.WriteLine("[{0}] * Received {1}", DateTime.Now.TimeOfDay, message);
+                Console.WriteLine("[{0}] * Received {1} DeliveryTag({2})", DateTime.Now.TimeOfDay, message, ea.DeliveryTag);
                 Thread.Sleep(1000 / msgs_per_second);
-                // channel.BasicAck(ea.DeliveryTag, false); // Uncomment this line, otherwise messages won't be sent
+                // channel.BasicAck(ea.DeliveryTag, false); // Uncomment this line, otherwise basic.ack won't be sent
             };
+            channel.BasicConsume(queue: QueueName,
+                                 autoAck: false,
+                                 consumer: consumer);
 
             Console.WriteLine(" Press [enter] to exit.");
             Console.ReadLine();
@@ -87,20 +87,20 @@ class SimpleConsumer
         using(var channel = connection.CreateModel())
         {
             channel.QueueDeclarePassive(queue: QueueName);
-            channel.BasicQos(0, prefetchCount: 10, global: true);
+            channel.BasicQos(0, prefetchCount: 10, global: false);
 
             var consumer = new EventingBasicConsumer(channel);
-            channel.BasicConsume(queue: QueueName,
-                                 autoAck: false,
-                                 consumer: consumer);
             consumer.Received += (model, ea) =>
             {
                 var body = ea.Body.ToArray();
                 var message = Encoding.UTF8.GetString(body);
-                Console.WriteLine(" * Received {0}", message);
+                Console.WriteLine("[{0}] * Received {1} DeliveryTag({2})", DateTime.Now.TimeOfDay, message, ea.DeliveryTag);
                 Thread.Sleep(1000 / msgs_per_second);
                 channel.BasicAck(ea.DeliveryTag, false);
             };
+            channel.BasicConsume(queue: QueueName,
+                                 autoAck: false,
+                                 consumer: consumer);
 
             Console.WriteLine(" Press [enter] to exit.");
             Console.ReadLine();

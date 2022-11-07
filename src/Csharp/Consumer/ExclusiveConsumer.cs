@@ -37,7 +37,6 @@ class ExclusiveConsumer
             );
 
             var consumer = new EventingBasicConsumer(channel);
-            channel.BasicConsume(queue: declaredQueue.QueueName, autoAck: true, consumer: consumer);
             consumer.Received += (model, ea) =>
             {
                 var body = ea.Body.ToArray();
@@ -45,6 +44,7 @@ class ExclusiveConsumer
                 Console.WriteLine("[{0}] * Received {1}", DateTime.Now.TimeOfDay, message);
                 Thread.Sleep(1000 / msgs_per_second);
             };
+            channel.BasicConsume(queue: declaredQueue.QueueName, autoAck: true, consumer: consumer);
 
             Console.WriteLine(" Press [enter] to exit.");
             Console.ReadLine();
