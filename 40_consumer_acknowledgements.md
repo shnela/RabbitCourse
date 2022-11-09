@@ -63,3 +63,4 @@ hannel.BasicNack(ea.DeliveryTag, false, true); // nack delivery and set message 
 
 #### Detecing re-queued messages
 > Redeliveries will have a special boolean property, redeliver, set to true by RabbitMQ. For first time deliveries it will be set to false.
+

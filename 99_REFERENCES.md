@@ -24,7 +24,7 @@ Good hands on instructions for setting up some working environment.
 Guy's definitelly better when talking about network protocols, but has some materials regarding RabbitMQ.
 They are very general, but maybe it will suit some of you.
 
-## Raft cons
+## Raft consensus algorithm
 
 ### [The Raft Consensus Algorithm](https://raft.github.io/)
 Good animations on page and original paper describing the protocol.
