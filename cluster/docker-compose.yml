@@ -48,6 +48,20 @@ services:
       - ./config/rmq3/:/config/
     networks:
       - rabbits
+  rmq_separate:
+    container_name: rmq_separate
+    hostname: rmq_separate
+    image: rabbitmq:3.10-management
+    ports:
+      - 8084:15672
+      - 5004:5672
+      - 8884:1883
+    environment:
+      - RABBITMQ_ENABLED_PLUGINS_FILE=/config/enabled_plugins
+    volumes:
+      - ./config/rmq_separate/:/config/
+    networks:
+      - rabbits
 
 networks:
   rabbits:

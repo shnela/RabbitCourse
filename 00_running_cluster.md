@@ -23,6 +23,15 @@ Three nodes (`rmq1`, `rmq2` and `rmq3`) forming cluster:
   * 8081
   * 8082
   * 8083
+* They will be listening for `MQTT` connections on ports:
+  * 8881
+  * 8882
+  * 8883
+
+Separate `rmq_separate` node with:
+* 5004 - `AMQP-0.9.1` protocol port
+* 8084 - `HTTP Management UI` port
+* 8884 - `MQTT` protocol port
 
 
 ## Starting HAProxy node
