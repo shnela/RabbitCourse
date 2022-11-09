@@ -15,11 +15,15 @@ In our case we've automatically enabled `rabbimt_mqtt` plugin for all nodes in t
 
 
 ## Create user
-By default `guest` user can be used only on localhost connections.
-
+(In our case we'll use `guest`).
 ```bash
 # username and password are both "mqtt-test"
 rabbitmqctl add_user mqtt-test mqtt-test
 rabbitmqctl set_permissions -p / mqtt-test ".*" ".*" ".*"
 rabbitmqctl set_user_tags mqtt-test management
 ```
+
+## Source code examples
+* `./src/python/MQQT/publisher.py`
+* `./src/python/MQQT/consumer.py`
+  
